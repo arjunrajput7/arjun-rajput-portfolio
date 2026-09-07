@@ -1,0 +1,29 @@
+# build trees
+build/
+cmake-build-*/
+out/
+
+# ROS 2 / colcon
+install/
+log/
+edge-ai-detector-tensorrt-ros2/build/
+edge-ai-detector-tensorrt-ros2/install/
+edge-ai-detector-tensorrt-ros2/log/
+
+# model + capture artifacts
+*.engine
+*.onnx
+*.table
+*.raw
+*.mp4
+bench*.csv
+calib_images/
+
+# editor / OS
+.vscode/
+.idea/
+.cache/
+compile_commands.json
+*.o
+*.d
+.DS_Store

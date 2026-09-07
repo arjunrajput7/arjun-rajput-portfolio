@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>edge_ai_detector</name>
+  <version>0.1.0</version>
+  <description>
+    Embedded Edge AI object detector: GStreamer capture -> TensorRT INT8 engine
+    -> ROS 2 Detection2DArray / SocketCAN telemetry, with per-stage latency and
+    memory benchmarking. Targets NVIDIA Jetson and comparable edge devices.
+  </description>
+
+  <maintainer email="arjun.rajput@example.com">Arjun Rajput</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>rclcpp</depend>
+  <depend>std_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>vision_msgs</depend>
+
+  <!-- System deps resolved via CMake find_package / pkg-config:
+       CUDA, TensorRT (nvinfer, nvonnxparser), GStreamer-1.0 + app, OpenCV -->
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
