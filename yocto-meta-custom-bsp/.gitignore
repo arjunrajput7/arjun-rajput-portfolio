@@ -1,0 +1,6 @@
+poky/
+build/
+*.rootfs.*
+tmp*/
+sstate-cache/
+downloads/

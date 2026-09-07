@@ -1,0 +1,28 @@
+Integration hunks for the custom `diag` command.
+Apply by hand (they are tiny) after copying src/cmd_diag.c to U-Boot's cmd/.
+
+--- a/cmd/Makefile
++++ b/cmd/Makefile
+@@
+ obj-$(CONFIG_CMD_DATE) += date.o
++obj-$(CONFIG_CMD_DIAG) += cmd_diag.o
+ obj-$(CONFIG_CMD_DM) += dm.o
+
+--- a/cmd/Kconfig
++++ b/cmd/Kconfig
+@@
++config CMD_DIAG
++	bool "diag - custom board bring-up diagnostics"
++	default y
++	help
++	  Adds the 'diag' command: SoC/DRAM/reset summary, a non-destructive
++	  DRAM walk, and control of the board status LED.
++
++config CUSTOM_STATUS_LED_GPIO
++	int "GPIO number of the board status LED"
++	depends on CMD_DIAG
++	default 42
++
+ config CMD_BDI
+ 	bool "bdinfo"
+	default y

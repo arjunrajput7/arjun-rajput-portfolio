@@ -1,0 +1,33 @@
+// SPDX-License-Identifier: GPL-2.0
+/*
+ * Device Tree Overlay: declare a BMP280 on the Raspberry Pi's i2c1 bus so the
+ * bmp280_simple driver binds to it automatically.
+ *
+ * Build:  dtc -@ -I dts -O dtb -o bmp280-overlay.dtbo bmp280-overlay.dts
+ * Load at runtime:  sudo dtoverlay bmp280-overlay.dtbo
+ * Load at boot:     copy to /boot/overlays/ and add `dtoverlay=bmp280-overlay`
+ *                   plus `dtparam=i2c_arm=on` to /boot/config.txt
+ */
+
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "brcm,bcm2835";
+
+	fragment@0 {
+		target = <&i2c1>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			status = "okay";
+			clock-frequency = <400000>;	/* 400 kHz fast mode */
+
+			bmp280@76 {
+				compatible = "mycompany,bmp280-simple";
+				reg = <0x76>;		/* SDO low; use 0x77 if SDO high */
+				status = "okay";
+			};
+		};
+	};
+};

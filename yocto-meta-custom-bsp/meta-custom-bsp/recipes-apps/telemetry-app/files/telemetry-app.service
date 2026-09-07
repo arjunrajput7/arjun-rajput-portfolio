@@ -1,0 +1,17 @@
+[Unit]
+Description=Headless telemetry sample application
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/telemetry-app
+Restart=on-failure
+RestartSec=2
+# minimal hardening
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+
+[Install]
+WantedBy=multi-user.target
